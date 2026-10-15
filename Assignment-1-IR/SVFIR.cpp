@@ -35,10 +35,13 @@ int main(int argc, char** argv)
     SVFIRBuilder builder;
     cout << "Generating SVFIR(PAG), call graph and ICFG ..." << endl;
 
-    // TODO: here, generate SVFIR(PAG), call graph and ICFG, and dump them to files
-    //@{
+    // Build the SVFIR (PAG), which also constructs the ICFG and call graph.
+    SVFIR* pag = builder.build();
 
-    //@}
+    // Dump each graph in Graphviz DOT format in the current working directory.
+    pag->dump("svfir");
+    pag->getCallGraph()->dump("callgraph");
+    pag->getICFG()->dump("icfg");
 
     return 0;
 }
